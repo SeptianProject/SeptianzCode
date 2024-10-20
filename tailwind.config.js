@@ -10,10 +10,11 @@ export default {
         'grotesk': ['Space Grotesk', 'sans-serif'],
       },
       colors: {
-        primary: '#FF6363',
-        secondary: '#03DAC6',
-        tertiary: '#1F1F1F',
-
+        primary: '#03DAC6',
+        secondary: '#1F1F1F',
+        tertiary: '#BB86FC',
+        light: '#F5F5F5',
+        dark: '#121212',
       }
     },
   },
