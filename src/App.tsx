@@ -7,7 +7,7 @@ import Skill from "./components/pages/Skill"
 
 const App = () => {
   return (
-    <section className="max-w-full min-h-screen container scroll-smooth bg-dark">
+    <section className="relative max-w-full px-60 container scroll-smooth bg-dark">
       <Nav />
       <Home />
       <About />
