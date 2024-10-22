@@ -2,7 +2,7 @@ import septianz from './septianz.png'
 import logo from './logo.png'
 
 export const images = {
-     septianz, logo
+     septianz, logo,
 }
 
 export const navItems = {
