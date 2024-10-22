@@ -1,30 +1,41 @@
-import { useState } from "react"
-import { navItems } from "../../assets/assets"
-import HamburgerMenu from "../fragments/nav/HamburgerMenu"
-import NavItem from "../fragments/nav/NavItem"
+import BadgeItem from "../fragments/BadgeItem"
+import { BiHome } from "react-icons/bi"
+import { SiAboutdotme } from "react-icons/si"
+import { GiSkills } from "react-icons/gi"
+import { GrProjects } from "react-icons/gr"
+import { Link } from "react-scroll"
 
 const Nav = () => {
-     const [onTap, setOnTap] = useState(false)
-
-     const handleOnTap = () => {
-          setOnTap(!onTap)
-          if (onTap) {
-               console.log("Hamburger menu is open")
-          }
-     }
+     const iconStyle: string = 'text-neutral-500 size-6 hover:text-light transition duration-300'
+     const navItems = [
+          {
+               icon: <BiHome className={iconStyle} />,
+               link: '/'
+          },
+          {
+               icon: <SiAboutdotme className={iconStyle} />,
+               link: 'about'
+          },
+          {
+               icon: <GiSkills className={iconStyle} />,
+               link: 'skill'
+          },
+          {
+               icon: <GrProjects className={iconStyle} />,
+               link: 'project'
+          },
+     ]
 
      return (
-          <nav className="flex justify-between items-end min-h-[10vh]">
-               <div>
-                    <h1 className="text-white font-medium text-lg">{navItems.logo}</h1>
-               </div>
-               <div className="">
-                    <HamburgerMenu isOpen={onTap} setIsOpen={handleOnTap}
-                         className={`${onTap ? 'absolute translate-y-20 -translate-x-40' : 'static'}`} />
-                    <div className={`${onTap ? 'flex z-10 bg-secondary bg-opacity-100 ' : 'bg-opacity-0 -z-50'} 
-                    absolute inset-0 items-center justify-center flex-col gap-y-4`}>
-                         <NavItem />
-                    </div>
+          <nav className="hidden lg:block fixed right-10 inset-y-1/3">
+               <div className="flex flex-col gap-y-2">
+                    {navItems.map((item, index) => (
+                         <Link key={index} smooth={true} to={item.link}>
+                              <BadgeItem>
+                                   {item.icon}
+                              </BadgeItem>
+                         </Link>
+                    ))}
                </div>
           </nav>
      )
