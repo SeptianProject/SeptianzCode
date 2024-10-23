@@ -3,15 +3,13 @@ import Dash from "./Dash"
 
 
 const BoxDash = () => {
-     const items = ['SD', 'HD', 'FHD']
+     const items = ['SD', 'SMP', 'SMK']
 
      return (
           <div className='flex flex-col items-center'>
                {items.map((item, index) => (
-                    <div key={index} className='flex flex-col items-center'>
-                         <Box
-                              text={item}
-                         />
+                    <div key={index} className='flex flex-col items-center '>
+                         <Box text={item} />
                          {index <= item.length && <Dash />}
                     </div>
                ))}
