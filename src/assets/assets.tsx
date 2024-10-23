@@ -82,5 +82,6 @@ export const footerItems = [
      {
           title: 'SeptianzCode.',
           link: '/'
-     }
+     },
+
 ]
