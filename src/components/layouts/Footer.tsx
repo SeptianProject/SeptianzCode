@@ -1,8 +1,9 @@
-import React from 'react'
 
 const Footer = () => {
      return (
-          <div></div>
+          <div className='min-h-[20dvh] bg-secondary mt-40'>
+
+          </div>
      )
 }
 

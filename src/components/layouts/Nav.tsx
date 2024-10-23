@@ -6,29 +6,31 @@ import { GrProjects } from "react-icons/gr"
 import { Link } from "react-scroll"
 
 const Nav = () => {
-     const iconStyle: string = 'text-neutral-500 size-6 hover:text-light transition duration-300'
+     const className = 'text-neutral-500 size-6 hover:text-light transition duration-300'
      const navItems = [
           {
-               icon: <BiHome className={iconStyle} />,
+               icon: <BiHome className={className} />,
                link: '/'
           },
           {
-               icon: <SiAboutdotme className={iconStyle} />,
+               icon: <SiAboutdotme className={className} />,
                link: 'about'
           },
           {
-               icon: <GiSkills className={iconStyle} />,
+               icon: <GiSkills className={className} />,
                link: 'skill'
           },
           {
-               icon: <GrProjects className={iconStyle} />,
+               icon: <GrProjects className={className} />,
                link: 'project'
           },
      ]
 
      return (
-          <nav className="hidden lg:block fixed right-10 inset-y-1/3">
-               <div className="flex flex-col gap-y-2">
+          <nav className="fixed bottom-0 bg-secondary h-[10dvh] lg:h-[100dvh] w-full 
+          lg:right-10 lg:w-auto lg:bg-transparent z-20">
+               <div className="flex flex-row items-center justify-around h-full 
+               lg:flex-col lg:gap-y-4 lg:justify-center">
                     {navItems.map((item, index) => (
                          <Link key={index} smooth={true} to={item.link}>
                               <BadgeItem>

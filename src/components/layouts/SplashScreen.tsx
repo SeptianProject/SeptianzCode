@@ -1,4 +1,4 @@
-import { useRef, useState } from "react"
+import { useRef } from "react"
 import gsap from "gsap"
 import { useGSAP } from "@gsap/react"
 import TextPlugin from "gsap/TextPlugin"
@@ -14,36 +14,6 @@ const SplashScreen = ({ setIsLoading }: SplashScreenProps) => {
      const containerRef = useRef<HTMLDivElement>(null)
      const textRef = useRef<HTMLDivElement>(null)
      const cursorRef = useRef<HTMLSpanElement>(null)
-     const audioContextRef = useRef<AudioContext | null>(null)
-     const glitchSoundRef = useRef<HTMLAudioElement | null>(null)
-     const [isAudioInitialized, setIsAudioInitialized] = useState(false)
-
-     // Inisialisasi audio setelah interaksi pengguna
-     const initializeAudio = () => {
-          try {
-               // Inisialisasi AudioContext
-               if (!audioContextRef.current) {
-                    audioContextRef.current = new AudioContext()
-               }
-
-               // Resume AudioContext jika suspended
-               if (audioContextRef.current.state === 'suspended') {
-                    audioContextRef.current.resume()
-               }
-
-               // Inisialisasi audio element
-               if (!glitchSoundRef.current) {
-                    glitchSoundRef.current = new Audio('/glitch.mp3')
-                    glitchSoundRef.current.volume = 1
-                    // Pre-load audio
-                    glitchSoundRef.current.load()
-               }
-
-               setIsAudioInitialized(true)
-          } catch (error) {
-               console.error('Error initializing audio:', error)
-          }
-     }
 
      const createRandomColor = () => {
           const colors = ['#ff0000', '#00ff00', '#0000ff', '#ff00ff', '#ffff00', '#00ffff', '#f5f5f5']
@@ -55,21 +25,6 @@ const SplashScreen = ({ setIsLoading }: SplashScreenProps) => {
           return text.split('').map(() =>
                chars.charAt(Math.floor(Math.random() * chars.length))
           ).join('')
-     }
-
-     const playGlitchSound = () => {
-          if (!isAudioInitialized) {
-               initializeAudio()
-          }
-
-          if (glitchSoundRef.current) {
-               try {
-                    glitchSoundRef.current.currentTime = 0
-                    glitchSoundRef.current.play()
-               } catch (err) {
-                    console.warn('Audio playback failed:', err)
-               }
-          }
      }
 
      useGSAP(() => {
@@ -90,32 +45,29 @@ const SplashScreen = ({ setIsLoading }: SplashScreenProps) => {
                duration: 1.5,
                text: text,
                ease: "power2.out",
-               onStart: () => initializeAudio()
-          })
-               // Delay with glitch effect
-               .to(textRef.current, {
-                    delay: 1,
-                    duration: 0.1,
-                    repeat: 8,
-                    repeatDelay: 0,
-                    onRepeat: () => {
-                         if (textRef.current) {
-                              const originalText = text
-                              textRef.current.innerHTML = createGlitchText(originalText)
-                              textRef.current.style.color = createRandomColor()
-                              textRef.current.style.transform = `translate(${gsap.utils.random(-10, 10)}px, 
+          }).to(textRef.current, {
+               delay: 1,
+               duration: 0.1,
+               repeat: 8,
+               repeatDelay: 0,
+               onRepeat: () => {
+                    if (textRef.current) {
+                         const originalText = text
+                         textRef.current.innerHTML = createGlitchText(originalText)
+                         textRef.current.style.color = createRandomColor()
+                         textRef.current.style.transform = `translate(${gsap.utils.random(-10, 10)}px, 
                               ${gsap.utils.random(-10, 10)}px)`
-                              playGlitchSound()
-                              gsap.delayedCall(0.05, () => {
-                                   if (textRef.current) {
-                                        textRef.current.innerHTML = originalText
-                                        textRef.current.style.color = '#f5f5f5'
-                                        textRef.current.style.transform = 'translate(0, 0)'
-                                   }
-                              })
-                         }
+
+                         gsap.delayedCall(0.05, () => {
+                              if (textRef.current) {
+                                   textRef.current.innerHTML = originalText
+                                   textRef.current.style.color = '#f5f5f5'
+                                   textRef.current.style.transform = 'translate(0, 0)'
+                              }
+                         })
                     }
-               })
+               }
+          })
                .to(textRef.current, {
                     duration: 1,
                     text: text,
@@ -151,7 +103,7 @@ const SplashScreen = ({ setIsLoading }: SplashScreenProps) => {
      }, { scope: containerRef })
 
      return (
-          <div ref={containerRef} onClick={initializeAudio}
+          <div ref={containerRef}
                className="fixed inset-0 bg-dark z-50 flex items-center justify-center">
                <div className="flex items-center justify-center relative">
                     <div ref={textRef}
