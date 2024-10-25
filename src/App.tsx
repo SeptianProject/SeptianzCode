@@ -15,7 +15,6 @@ const App = () => {
       {isLoading && <SplashScreen setIsLoading={setIsLoading} />}
       <section className="relative max-w-full min-h-screen 
     scroll-smooth bg-dark selection:bg-light selection:text-dark z-0">
-        {/* <AudioTest /> */}
         <Nav />
         <Home />
         <About />

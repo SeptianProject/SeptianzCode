@@ -42,6 +42,7 @@ const SplashScreen = ({ setIsLoading }: SplashScreenProps) => {
           })
 
           tl.to(textRef.current, {
+               delay: 2,
                duration: 1.5,
                text: text,
                ease: "power2.out",
