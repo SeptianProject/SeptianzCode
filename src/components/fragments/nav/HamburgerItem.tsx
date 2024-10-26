@@ -1,16 +1,14 @@
+import { forwardRef } from "react"
 
 type TProps = {
-     isOpen: boolean
-     setIsOpen: () => void
      className?: string
 }
 
-const HamburgerItem = ({ isOpen, setIsOpen, className }: TProps) => {
+const HamburgerItem = forwardRef<HTMLDivElement, TProps>(({ className }, ref) => {
      return (
-          <div onClick={setIsOpen} className={`w-6 h-[3px] bg-white 
-               transition-all duration-500
-               ${isOpen ? className : ''}`} />
+          <div ref={ref} className={`w-6 h-[3px] bg-white 
+               transition-all duration-500 ${className}`} />
      )
-}
+})
 
 export default HamburgerItem

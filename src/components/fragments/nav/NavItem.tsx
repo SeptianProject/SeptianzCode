@@ -1,21 +1,16 @@
 import { Link } from "react-scroll"
 import { navItems } from "../../../assets/assets"
-import { useState } from "react"
 
 const NavItem = () => {
-     const [onHover, setOnHover] = useState(false)
-
      return (
           <>
-               {navItems.items.map((item, index) => (
+               {navItems.map((item, index) => (
                     <div key={index}>
-                         <Link to={item.to} onMouseMove={() => setOnHover(true)}
-                              className="text-white cursor-pointer">
+                         <Link to={item.link} smooth={true} duration={500}
+                              className="text-light font-normal text-[16px] hover:text-[20px]
+                              transition-all transform duration-300 cursor-pointer">
                               {item.title}
                          </Link>
-                         <div
-                              className={`bg-white w-10 mx-auto h-[2px] rounded absolute inset-x-0
-                              ${onHover ? 'translatex-10' : ''}`} />
                     </div>
                ))}
           </>
