@@ -8,6 +8,10 @@ import spotifyClone from './projects/spotifyClone.png'
 import pixel from './projects/pixel.png'
 import sritanjung from './projects/sritanjung.png'
 import perpusku from './projects/perpusku.jpg'
+import { BiHome } from "react-icons/bi"
+import { SiAboutdotme } from "react-icons/si"
+import { GiSkills } from "react-icons/gi"
+import { GrProjects } from "react-icons/gr"
 
 export const images = {
      septianz, logo,
@@ -56,27 +60,30 @@ export const projects = [
      },
 ]
 
-export const navItems = {
-     logo: 'SeptianszCode.',
-     items: [
-          {
-               title: 'Home',
-               to: '/'
-          },
-          {
-               title: 'About',
-               to: 'about'
-          },
-          {
-               title: 'Skill',
-               to: 'skill'
-          },
-          {
-               title: 'Project',
-               to: 'project'
-          },
-     ]
-}
+const navClassName = 'text-neutral-500 size-6 hover:text-light transition duration-300'
+
+export const navItems = [
+     {
+          icon: <BiHome className={navClassName} />,
+          link: '/',
+          title: 'Home'
+     },
+     {
+          icon: <SiAboutdotme className={navClassName} />,
+          link: 'about',
+          title: 'About Me'
+     },
+     {
+          icon: <GiSkills className={navClassName} />,
+          link: 'skill',
+          title: 'My Skill'
+     },
+     {
+          icon: <GrProjects className={navClassName} />,
+          link: 'project',
+          title: 'My Project'
+     },
+]
 
 export const footerItems = [
      {

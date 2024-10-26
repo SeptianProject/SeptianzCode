@@ -1,6 +1,5 @@
 import { useState } from "react"
 import Footer from "./components/layouts/Footer"
-import Nav from "./components/layouts/Nav"
 import About from "./components/pages/About"
 import Home from "./components/pages/Home"
 import Project from "./components/pages/Project"
@@ -13,10 +12,8 @@ const App = () => {
   return (
     <>
       {isLoading && <SplashScreen setIsLoading={setIsLoading} />}
-      <section className="relative max-w-full min-h-screen 
-    scroll-smooth bg-dark selection:bg-light selection:text-dark z-0">
-        {/* <AudioTest /> */}
-        <Nav />
+      <section className="relative max-w-full min-h-screen scroll-smooth bg-dark 
+      selection:bg-light selection:text-dark z-0">
         <Home />
         <About />
         <Skill />
