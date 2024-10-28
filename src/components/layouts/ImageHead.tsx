@@ -3,19 +3,28 @@ import { images } from '../../assets/assets'
 const ImageHead = () => {
      return (
           <>
-               <img src={images.septianz} alt=""
+               <img id='image' src={images.septianz} alt="SeptianzCode.id"
                     className="w-[20rem] h-full cursor-grabbing select-none
                               object-cover object-top transition-all box-content
                               duration-500 hover:grayscale-0 grayscale brightness-75
                               hover:brightness-100 group-hover:hover" />
-               <div className="bg-secondary hover:bg-primary w-[10rem] h-[55vh] 
-                         absolute bottom-0 -left-20 -z-10 rounded-bl-3xl" />
-               <div className="bg-secondary hover:bg-primary w-[10rem] h-[80vh] 
-                         absolute bottom-0 right-52 -z-10 rounded-tl-3xl" />
-               <div className="bg-secondary hover:bg-primary w-[16rem] h-[70vh] 
-                         absolute bottom-0 right-16 -z-10 rounded-tr-3xl" />
+               <BgRectangle index='rectangle-1' className='h-[55vh] -left-20' />
+               <BgRectangle index='rectangle-2' className='h-[80vh] right-52 rounded-tl-3xl' />
+               <BgRectangle index='rectangle-3' className='w-[16rem] h-[70vh] right-16 rounded-tr-3xl' />
           </>
      )
 }
 
 export default ImageHead
+
+type BgRectangle = {
+     className: string
+     index: string
+}
+
+const BgRectangle = ({ className, index }: BgRectangle) => {
+     return (
+          <div id={index} className={`bg-secondary w-[10rem] ${className}
+                         absolute bottom-0 -z-10 rounded-bl-3xl`} />
+     )
+}

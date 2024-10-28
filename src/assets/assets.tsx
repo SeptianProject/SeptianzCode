@@ -12,6 +12,8 @@ import { BiHome } from "react-icons/bi"
 import { SiAboutdotme } from "react-icons/si"
 import { GiSkills } from "react-icons/gi"
 import { GrProjects } from "react-icons/gr"
+import { FaGithub, FaInstagram, FaLinkedinIn, FaWhatsapp } from "react-icons/fa6"
+
 
 export const images = {
      septianz, logo,
@@ -92,3 +94,26 @@ export const footerItems = [
      },
 
 ]
+
+const classNameBadge = 'hover:text-primary lg:size-4 text-neutral-500 transition duration-300 hover:scale-125'
+export const badgeItems = [
+     { icon: <FaInstagram className={classNameBadge} /> },
+     { icon: <FaLinkedinIn className={classNameBadge} /> },
+     { icon: <FaGithub className={classNameBadge} /> },
+     { icon: <FaWhatsapp className={classNameBadge} /> },
+]
+
+export const items = [
+     {
+          title: 'SD',
+          description: 'Sekolah Dasar periode pembelajaran fundamental'
+     },
+     {
+          title: 'SMP',
+          description: 'Sekolah Menengah Pertama periode pembelajaran lanjutan'
+     },
+     {
+          title: 'SMK',
+          description: 'Sekolah Menengah Kejuruan fokus pada keahlian spesifik'
+     },
+];

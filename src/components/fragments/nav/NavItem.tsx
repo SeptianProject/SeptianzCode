@@ -1,7 +1,13 @@
 import { Link } from "react-scroll"
-import { navItems } from "../../../assets/assets"
 
-const NavItem = () => {
+type NavItemProps = {
+     navItems: {
+          link: string
+          title: string
+     }[]
+}
+
+const NavItem = ({ navItems }: NavItemProps) => {
      return (
           <>
                {navItems.map((item, index) => (
