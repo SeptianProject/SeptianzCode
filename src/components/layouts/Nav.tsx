@@ -80,11 +80,11 @@ const Nav = () => {
      return (
           <>
                <nav ref={navRef}
-                    className={`flex w-full h-[10vh] z-50 top-0 py-10
+                    className={`flex w-full px-10 lg:px-0 h-[10vh] z-50 top-0 py-10
                     justify-between items-center
-                    ${isSticky ?
-                              `fixed inset-x-0 px-[10.6rem] bg-dark shadow-lg`
-                              : 'absolute'}`}>
+                    ${isSticky ? `fixed inset-x-0 lg:px-[10.6rem] bg-dark shadow-lg`
+                              : 'absolute'}
+                    ${onTap ? 'shadow-none' : 'shadow-none'}`}>
                     <h1 className={`font-medium text-lg`}>
                          SeptianzCode.
                     </h1>

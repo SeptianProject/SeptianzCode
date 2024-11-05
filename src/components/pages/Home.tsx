@@ -1,22 +1,24 @@
 import ImageHead from "../layouts/ImageHead"
 import Nav from "../layouts/Nav"
 import { useGSAP } from "@gsap/react"
-import { useRef } from "react"
+import { useEffect, useRef } from "react"
 import gsap from "gsap"
 import { badgeItems } from "../../assets/assets"
 
-const Home = () => {
+const Home = ({ startAnimation = false }) => {
      const containerRef = useRef(null)
      const titleRef = useRef(null)
      const descRef = useRef(null)
      const badgeRef = useRef(null)
      const imageRef = useRef(null)
+     const timelineRef = useRef<GSAPTimeline | null>(null)
 
      useGSAP(() => {
-          const tl = gsap.timeline({
+          timelineRef.current = gsap.timeline({
+               paused: true,
                defaults: {
                     ease: "power3.out",
-                    duration: 1
+                    duration: 0.6
                }
           })
 
@@ -33,7 +35,7 @@ const Home = () => {
                })
           }
 
-          tl.to(titleRef.current, {
+          timelineRef.current.to(titleRef.current, {
                opacity: 1,
                y: 0,
                duration: 0.8
@@ -50,7 +52,7 @@ const Home = () => {
                .to(".badge-item", {
                     x: 0,
                     stagger: {
-                         each: 0.1,
+                         each: 0.08,
                          from: 'edges',
                          grid: 'auto',
                          ease: 'power2.inOut',
@@ -58,12 +60,12 @@ const Home = () => {
                }, "-=0.4")
 
           if (imageRef.current) {
-               tl.to(imageRef.current, {
+               timelineRef.current.to(imageRef.current, {
                     opacity: 1,
                     x: 0,
                     y: 0,
-                    duration: 1
-               }, "-=0.8")
+                    duration: 0.8
+               }, "-=0.6")
           }
 
           const badges = document.querySelectorAll('.badge-item')
@@ -71,19 +73,25 @@ const Home = () => {
                badge.addEventListener('mouseenter', () => {
                     gsap.to(badge, {
                          scale: 1.1,
-                         duration: 0.3,
+                         duration: 0.2,
                          ease: "power2.out"
                     })
                })
                badge.addEventListener('mouseleave', () => {
                     gsap.to(badge, {
                          scale: 1,
-                         duration: 0.3,
+                         duration: 0.2,
                          ease: "power2.out"
                     })
                })
           })
      }, { scope: containerRef })
+
+     useEffect(() => {
+          if (startAnimation && timelineRef.current) {
+               timelineRef.current.play()
+          }
+     }, [startAnimation])
 
      return (
           <div ref={containerRef} id="/" className="min-h-[100vh] transition-all duration-1000 relative

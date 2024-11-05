@@ -31,7 +31,14 @@ const SplashScreen = ({ setIsLoading }: SplashScreenProps) => {
           const text = 'SeptianzCode'
 
           const tl = gsap.timeline({
-               onComplete: () => setIsLoading(false)
+               onComplete: () => {
+                    gsap.to(containerRef.current, {
+                         yPercent: -100,
+                         duration: 1,
+                         ease: "power2.inOut",
+                         onComplete: () => setIsLoading(false)
+                    })
+               }
           })
 
           gsap.to(cursorRef.current, {

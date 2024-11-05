@@ -55,8 +55,8 @@ const Project = () => {
                     lg:grid-rows-5 lg:grid-cols-6 lg:gap-y-[17rem] lg:gap-x-[25rem]
                     transform -rotate-45 translate-y-32 -translate-x-40 lg:-translate-x-80 
                     lg:-translate-y-80 absolute inset-0 scale-110">
-                         {shuffledProjects.map((project) => (
-                              <div key={project.id} style={{ backgroundImage: `url(${project.image})` }}
+                         {shuffledProjects.map((project, index) => (
+                              <div key={index} style={{ backgroundImage: `url(${project.image})` }}
                                    className="bg-secondary w-52 h-60 lg:w-96 lg:h-64 transform
                                    hover:scale-105 transition-all duration-500 bg-cover bg-top
                                    cursor-pointer grayscale brightness-50 hover:grayscale-0 
