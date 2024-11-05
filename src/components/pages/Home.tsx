@@ -120,7 +120,7 @@ const Home = ({ startAnimation = false }) => {
                               ))}
                          </div>
                     </div>
-                    <div ref={imageRef} className="hidden lg:w-1/2 lg:h-[90vh] lg:block relative">
+                    <div ref={imageRef} className="hidden lg:w-fit lg:h-[90vh] lg:block relative">
                          <ImageHead />
                     </div>
                </div>
