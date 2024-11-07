@@ -5,6 +5,7 @@ import Home from "./components/pages/Home"
 import Project from "./components/pages/Project"
 import Skill from "./components/pages/Skill"
 import SplashScreen from "./components/layouts/SplashScreen"
+import Layout from "./components/pages/DrawSvg"
 
 
 const App = () => {
@@ -28,6 +29,7 @@ const App = () => {
         <About />
         <Skill />
         <Project />
+        <Layout />
         <Footer />
       </section>
     </>

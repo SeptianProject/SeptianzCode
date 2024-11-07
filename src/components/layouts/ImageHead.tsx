@@ -18,9 +18,21 @@ const ImageHead = () => {
                     inertia: true,
                     edgeResistance: 0.5,
                     bounds: containerRef.current,
+                    onDrag: () => {
+                         const velocity = InertiaPlugin.getVelocity(imageRef.current!, 'x')
+                         const xVelocity = velocity / 100
+
+                         const rotation = Math.max(-45, Math.min(45, xVelocity))
+
+                         gsap.to(imageRef.current, {
+                              rotate: rotation,
+                              duration: 0.2,
+                              ease: 'power2.out'
+                         })
+                    },
                     onDragStart: () => {
                          gsap.to(imageRef.current, {
-                              scale: 1.05,
+                              scale: 0.6,
                               duration: 0.2,
                               ease: 'power2.out'
                          })
@@ -28,8 +40,9 @@ const ImageHead = () => {
                     onDragEnd: () => {
                          gsap.to(imageRef.current, {
                               scale: 1,
+                              rotate: 0,
                               duration: 0.5,
-                              ease: 'elastic.out(1,0.5)'
+                              ease: 'elastic.out(1, 0.5)'
                          })
                     }
                },)
