@@ -3,25 +3,27 @@ import { images } from '../../assets/assets'
 import { useRef } from 'react'
 import { useGSAP } from '@gsap/react'
 import { Draggable } from 'gsap/Draggable'
-import InertiaPlugin from 'gsap-trial/InertiaPlugin'
 
-gsap.registerPlugin(Draggable, InertiaPlugin)
+gsap.registerPlugin(Draggable)
 
 const ImageHead = () => {
      const imageRef = useRef<HTMLImageElement>(null)
      const containerRef = useRef<HTMLDivElement>(null)
+     let lastX = 0
+     let velocityX = 0
 
      useGSAP(() => {
           if (imageRef.current && containerRef.current) {
                Draggable.create(imageRef.current, {
                     type: 'x,y',
-                    inertia: true,
                     edgeResistance: 0.5,
                     bounds: containerRef.current,
-                    onDrag: () => {
-                         const velocity = InertiaPlugin.getVelocity(imageRef.current!, 'x')
-                         const xVelocity = velocity / 100
+                    onDrag: function () {
+                         const currentX = this.x
+                         velocityX = currentX - lastX
+                         lastX = currentX
 
+                         const xVelocity = velocityX / 100
                          const rotation = Math.max(-45, Math.min(45, xVelocity))
 
                          gsap.to(imageRef.current, {
@@ -45,7 +47,7 @@ const ImageHead = () => {
                               ease: 'elastic.out(1, 0.5)'
                          })
                     }
-               },)
+               })
           }
      }, [])
 
