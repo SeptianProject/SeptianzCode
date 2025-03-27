@@ -1,5 +1,5 @@
 import gsap from 'gsap';
-import { useRef } from 'react';
+import { useRef, useEffect } from 'react';
 import { useGSAP } from '@gsap/react';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
@@ -32,6 +32,22 @@ const CurvedPathsDemo = () => {
                }
           })
      }, []);
+
+     useEffect(() => {
+          const container = containerRef.current
+
+          if (container) {
+               gsap.to(container, {
+                    duration: 1,
+                    rotation: 360,
+                    ease: "power2.out"
+               })
+          }
+
+          return () => {
+               gsap.killTweensOf(container)
+          }
+     }, [])
 
      return (
           <div className="min-h-screen max-w-screen-xl">

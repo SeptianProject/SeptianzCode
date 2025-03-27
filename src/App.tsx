@@ -5,8 +5,8 @@ import Home from "./components/pages/Home"
 import Project from "./components/pages/Project"
 import Skill from "./components/pages/Skill"
 import SplashScreen from "./components/layouts/SplashScreen"
-import Layout from "./components/pages/DrawSvg"
-
+// Import standard version instead of premium plugin version
+// import Layout from "./components/pages/DrawSvg"
 
 const App = () => {
   const [isLoading, setIsLoading] = useState<boolean>(true)
@@ -29,7 +29,8 @@ const App = () => {
         <About />
         <Skill />
         <Project />
-        <Layout />
+        {/* Remove Layout component that uses InertiaPlugin */}
+        {/* <Layout /> */}
         <Footer />
       </section>
     </>
