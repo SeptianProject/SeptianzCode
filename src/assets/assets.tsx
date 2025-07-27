@@ -95,7 +95,7 @@ export const footerItems = [
 
 ]
 
-const classNameBadge = 'hover:text-primary lg:size-4 text-neutral-500 transition duration-300 hover:scale-125'
+const classNameBadge = 'hover:text-tertiary lg:size-4 text-neutral-500 transition duration-300 hover:scale-125'
 export const badgeItems = [
      { icon: <FaInstagram className={classNameBadge} /> },
      { icon: <FaLinkedinIn className={classNameBadge} /> },

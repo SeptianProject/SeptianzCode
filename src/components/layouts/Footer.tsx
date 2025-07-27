@@ -1,16 +1,41 @@
+import { useRef, useEffect } from 'react'
+import usePhysicsEngine from '../../hooks/usePhysicsEngine'
 
-const Footer = () => {
+const PhysicsSection = () => {
+     const containerRef = useRef<HTMLDivElement>(null)
+
+     const objects = [
+          'Flutter',
+          'Filament',
+          'GSAP',
+          'Javascript',
+          'Laravel',
+          'Next.js',
+          'React',
+          'Svelte',
+          'Typescript',
+          'Vue'
+     ]
+
+     const { cleanup } = usePhysicsEngine(containerRef, objects, true)
+
+     useEffect(() => {
+          return () => {
+               cleanup()
+          }
+     }, [cleanup])
+
      return (
-          <div className='min-h-[10dvh] mt-40 transition-all duration-1000 '>
-               <div className="flex justify-around items-center">
-                    <h1 className="text-light opacity-60 text-sm font-light">Thanks</h1>
-                    <h1 className="text-light opacity-60 text-3xl font-semibold">.</h1>
-                    <h1 className="text-light opacity-60 text-sm font-light">SeptianzCode.</h1>
-                    <h1 className="text-light opacity-60 text-3xl font-semibold">.</h1>
-                    <h1 className="text-light opacity-60 text-sm font-light">Created by septianz</h1>
+          <section className="footer relative w-full h-[50svh] p-8 overflow-hidden">
+               <div className="object-container absolute top-0 left-0 w-full h-full bg-dark" ref={containerRef}>
+                    {objects.map((objectName, index) => (
+                         <div key={index} className="object absolute w-max text-xl font-medium bg-white px-8 py-4 rounded-full cursor-grab select-none pointer-events-auto z-10 active:cursor-grabbing" >
+                              <p className='text-dark'>{objectName}</p>
+                         </div>
+                    ))}
                </div>
-          </div>
+          </section>
      )
 }
 
-export default Footer
+export default PhysicsSection
